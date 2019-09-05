@@ -16,6 +16,7 @@
 		11DF1E71232168AC0098C7D7 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF1E70232168AC0098C7D7 /* HTTPService.swift */; };
 		11DF1E7323216CD30098C7D7 /* URLSessionDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF1E7223216CD30098C7D7 /* URLSessionDataProtocol.swift */; };
 		11DF1E75232172A20098C7D7 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF1E74232172A10098C7D7 /* WeatherService.swift */; };
+		11DF1E79232189900098C7D7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF1E78232189900098C7D7 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		11DF1E70232168AC0098C7D7 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		11DF1E7223216CD30098C7D7 /* URLSessionDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataProtocol.swift; sourceTree = "<group>"; };
 		11DF1E74232172A10098C7D7 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		11DF1E78232189900098C7D7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				11DF1E74232172A10098C7D7 /* WeatherService.swift */,
+				11DF1E78232189900098C7D7 /* LocationManager.swift */,
 			);
 			path = ForecastDetails;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				11DF1E75232172A20098C7D7 /* WeatherService.swift in Sources */,
 				11DF1E71232168AC0098C7D7 /* HTTPService.swift in Sources */,
+				11DF1E79232189900098C7D7 /* LocationManager.swift in Sources */,
 				11DF1E452321497C0098C7D7 /* ViewController.swift in Sources */,
 				11DF1E7323216CD30098C7D7 /* URLSessionDataProtocol.swift in Sources */,
 				11DF1E432321497C0098C7D7 /* AppDelegate.swift in Sources */,
