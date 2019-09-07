@@ -1,43 +1,29 @@
 import Foundation
 import CoreLocation
 
-enum LocationError: Error {
-    case service
-    case permission
-    case geocoding(_: Error)
-    case unknown
-}
-
-protocol LocationManagable {
-    var latestLocation: ((Result<CLLocation, LocationError>) -> Void) { get }
+protocol LocationManagable: AnyObject {
+    var latestLocation: CLLocation? { get }
+    var permissionDidGrant: (() -> Void)? { get set }
     func startLocating()
 }
 
 final class LocationManager: NSObject, LocationManagable {
     private let manager = CLLocationManager()
-    var latestLocation: ((Result<CLLocation, LocationError>) -> Void) = { _ in }
+
+    var latestLocation: CLLocation? {
+        didSet {
+            if oldValue == nil && latestLocation != nil {
+                permissionDidGrant?()
+            }
+        }
+    }
+    var permissionDidGrant: (() -> Void)?
 
     override init() {
         super.init()
 
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        checkPermission()
-    }
-
-    private func checkPermission() {
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined, .restricted, .denied:
-                latestLocation(.failure(.permission))
-            case .authorizedAlways, .authorizedWhenInUse:
-                manager.startUpdatingLocation()
-            @unknown default:
-                latestLocation(.failure(.service))
-            }
-        } else {
-            latestLocation(.failure(.service))
-        }
     }
 
     func startLocating() {
@@ -48,11 +34,7 @@ final class LocationManager: NSObject, LocationManagable {
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return latestLocation(.failure(.unknown)) }
-        latestLocation(.success(location))
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        latestLocation(.failure(.geocoding(error)))
+        guard let location = locations.last else { return }
+        latestLocation = location
     }
 }

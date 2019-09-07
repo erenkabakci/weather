@@ -14,7 +14,7 @@ final class HttpService: HttpServiceProtocol {
     private let session: URLSessionProtocol
     private let decoder = JSONDecoder()
 
-    init(urlSession: URLSessionProtocol = URLSession(configuration: URLSessionConfiguration.default,
+    init(urlSession: URLSessionProtocol = URLSession(configuration: URLSessionConfiguration.ephemeral,
                                                      delegate: nil,
                                                      delegateQueue: nil)) {
         session = urlSession
@@ -32,6 +32,7 @@ final class HttpService: HttpServiceProtocol {
                 completion(.success(model))
 
             } catch {
+                debugPrint(error)
                 completion(.failure(.decodingFailure))
             }
         }

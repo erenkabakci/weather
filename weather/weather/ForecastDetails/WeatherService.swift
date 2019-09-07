@@ -8,11 +8,11 @@ private enum QueryConstants {
 
 private enum URLPaths {
     static let baseURL = URL(string: "https://api.darksky.net/forecast/")
-    static let apiKey = "8462e4863549bfaf6201178d7a8jjd2b98"
+    static let apiKey = "8462e4863549bfaf6201178d7a8d2b98"
 }
 
 protocol WeatherServiceProtocol {
-    func fetchForecastDetails(location: CLLocation, completion: @escaping ((Result<CurrentForecast, NetworkError>) -> Void))
+    func fetchForecastDetails(location: CLLocation, completion: @escaping ((Result<Forecast, NetworkError>) -> Void))
 }
 
 final class WeatherService: WeatherServiceProtocol {
@@ -22,7 +22,7 @@ final class WeatherService: WeatherServiceProtocol {
         self.httpService = httpService
     }
 
-    func fetchForecastDetails(location: CLLocation, completion: @escaping ((Result<CurrentForecast, NetworkError>) -> Void)) {
+    func fetchForecastDetails(location: CLLocation, completion: @escaping ((Result<Forecast, NetworkError>) -> Void)) {
         guard let url = URLPaths.baseURL else { return }
 
         var urlRequest = URLRequest(url: url
@@ -31,9 +31,7 @@ final class WeatherService: WeatherServiceProtocol {
             .appendingParameters(urlParameters: [QueryConstants.exclude, QueryConstants.units])
         )
         urlRequest.httpMethod = "GET"
-        httpService.get(urlRequest: urlRequest, completion: { (result: (Result<Forecast, NetworkError>)) in
-            completion(result.map { $0.currently })
-        })
+        httpService.get(urlRequest: urlRequest, completion: completion)
     }
 }
 
