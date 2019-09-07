@@ -9,7 +9,7 @@ protocol ForecastViewable: AnyObject {
 class ForecastViewController: UIViewController, ForecastViewable {
     var forecastTrigger: (() -> Void)?
 
-    private let timezoneLabel = UILabel()
+    private let summaryLabel = UILabel()
     private let temperatureLabel = UILabel()
     private let dateLabel = UILabel()
     private let triggerButton = UIButton(type: .custom)
@@ -30,12 +30,12 @@ class ForecastViewController: UIViewController, ForecastViewable {
     private func setupViews() {
         view.backgroundColor = UIColor.white
 
-        let verticalContainer = UIStackView(arrangedSubviews: [timezoneLabel, dateLabel, temperatureLabel, triggerButton])
+        let verticalContainer = UIStackView(arrangedSubviews: [summaryLabel, dateLabel, temperatureLabel, triggerButton])
         verticalContainer.alignment = .leading
         verticalContainer.spacing = 10.0
         verticalContainer.distribution = .fillProportionally
         verticalContainer.axis = .vertical
-        verticalContainer.setCustomSpacing(0, after: timezoneLabel)
+        verticalContainer.setCustomSpacing(0, after: summaryLabel)
 
         verticalContainer.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(verticalContainer)
@@ -45,8 +45,8 @@ class ForecastViewController: UIViewController, ForecastViewable {
                                      verticalContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16.0),
                                      triggerButton.heightAnchor.constraint(equalToConstant: 44.0)])
 
-        timezoneLabel.numberOfLines = 0
-        timezoneLabel.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        summaryLabel.numberOfLines = 0
+        summaryLabel.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         dateLabel.font = UIFont.systemFont(ofSize: 14, weight: .light)
         temperatureLabel.font = UIFont.systemFont(ofSize: 60, weight: .bold)
 
@@ -66,7 +66,7 @@ class ForecastViewController: UIViewController, ForecastViewable {
         dateLabel.isHidden = error
         temperatureLabel.isHidden = error
 
-        timezoneLabel.text = result.timeZone
+        summaryLabel.text = result.summary
         dateLabel.text = result.date
         temperatureLabel.text = result.temperature
         triggerButton.setTitle(result.buttonDescription, for: .normal)

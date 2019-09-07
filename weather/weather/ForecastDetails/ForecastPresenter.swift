@@ -47,14 +47,14 @@ final class ForecastPresenter {
         DispatchQueue.main.async { [weak self] in
             if case let .success(forecast) = result {
                 self?.view.displayResult(result:
-                    ForecastDetailViewModel(timeZone: forecast.timezone,
+                    ForecastDetailViewModel(summary: forecast.timezone,
                                             date: self?.dateFormatter.string(from: forecast.currently.time),
                                             temperature: "\(Int(forecast.currently.temperature ?? 0)) °C",
                         buttonDescription: "Refresh"),
                                    error: false)
             } else {
                 self?.view.displayResult(result:
-                    ForecastDetailViewModel(timeZone: "Location service or internet connection issue. \nPlease check your settings & \"Retry\"",
+                    ForecastDetailViewModel(summary: "Location service or internet connection issue. \nPlease check your settings & \"Retry\"",
                                             date: nil,
                                             temperature: nil,
                                             buttonDescription: "Retry"),
