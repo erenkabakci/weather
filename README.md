@@ -3,7 +3,7 @@ A dead-simple weather preview app, showing the current weather forecast for the 
 
 ## Getting Started
 Just hit the "Run" button in Xcode 🔨
-  - Do not forget to change the location simulation on Xcode if you are running on a simulator and want to see results for different cities ⚠️
+  - Do not forget to set/change the 'location simulation" in Xcode, if you are running on a simulator and want to see results, also for different cities ⚠️
   
 ### UI States
 Although the UI speaks for itself, there are two UI states visible in the app.
