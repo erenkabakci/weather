@@ -50,7 +50,7 @@ final class ForecastPresenter {
                     ForecastDetailViewModel(summary: forecast.timezone,
                                             date: self?.dateFormatter.string(from: forecast.currently.time),
                                             temperature: "\(Int(forecast.currently.temperature ?? 0)) °C",
-                        buttonDescription: "Refresh"),
+                                            buttonDescription: "Refresh"),
                                    error: false)
             } else {
                 self?.view.displayResult(result:

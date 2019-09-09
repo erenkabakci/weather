@@ -1,6 +1,6 @@
 import Foundation
 
-struct ForecastDetailViewModel {
+struct ForecastDetailViewModel: Equatable {
     let summary: String
     let date: String?
     let temperature: String?
